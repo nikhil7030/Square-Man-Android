@@ -12,24 +12,24 @@ EditorBuildSettings:
     path: Assets/Scenes/Lost.unity
     guid: 1913ec7d75e073b4eafa671b8a76f871
   - enabled: 1
-    path: Assets/Scenes/level 1.unity
+    path: Assets/Scenes/Gameplay Levels/level 1.unity
     guid: fc97293c100c45447af4af8688b48a30
   - enabled: 1
-    path: Assets/Scenes/Next Game.unity
+    path: Assets/Scenes/Next Game Windows/Next Game.unity
     guid: 2af39d0a3eaef6c46a8f3feb83c6f2f8
   - enabled: 1
-    path: Assets/Scenes/level 2.unity
+    path: Assets/Scenes/Gameplay Levels/level 2.unity
     guid: 8458797566ae5c24ca6ffe12bf987c2e
   - enabled: 1
-    path: Assets/Scenes/Next Game 2.unity
+    path: Assets/Scenes/Next Game Windows/Next Game 2.unity
     guid: a50de004d9d78a54ea3e1c3f2ea02328
   - enabled: 1
-    path: Assets/Scenes/level 3.unity
+    path: Assets/Scenes/Gameplay Levels/level 3.unity
     guid: 800d9ed64a450bf4997bedb517aea52d
   - enabled: 1
-    path: Assets/Scenes/Next Game 3.unity
+    path: Assets/Scenes/Next Game Windows/Next Game 3.unity
     guid: 844f49b8b040f8a409b48002450b53e4
   - enabled: 1
-    path: Assets/Scenes/level 4.unity
+    path: Assets/Scenes/Gameplay Levels/level 4.unity
     guid: dcdcdc02a4b0a1641b95acedb10fbc6c
   m_configObjects: {}

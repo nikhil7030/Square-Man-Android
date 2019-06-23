@@ -13,6 +13,11 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void Replay_Current_Level()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     public void complete_level1()
     {
         Debug.Log("End Point Reached");

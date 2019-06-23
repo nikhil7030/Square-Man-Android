@@ -1,15 +1,16 @@
 ﻿
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
-public class Nextlevel : MonoBehaviour
+public class Nextlevel_3 : MonoBehaviour
 {
     GameManager Gamemanager;
     public int Next_Level_ToCome;
     public void Next_Level()
     {
-        Gamemanager.Store_Score = 0;
+
         SceneManager.LoadScene(Next_Level_ToCome);
+        Gamemanager.Store_Score = 0;
+        score2.x = 0;
     }
-    
 }
+

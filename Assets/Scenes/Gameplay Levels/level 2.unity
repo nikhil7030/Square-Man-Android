@@ -11972,6 +11972,7 @@ MonoBehaviour:
   rb: {fileID: 1060178231}
   move: 130
   fmove: 1300
+  Speed: 50
 --- !u!1 &1076429973
 GameObject:
   m_ObjectHideFlags: 0

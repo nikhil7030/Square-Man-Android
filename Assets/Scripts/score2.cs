@@ -31,9 +31,9 @@ public class score2: MonoBehaviour
                     {
                         x += 1;
                         previous_possition.z = Player.position.z;
-                        Debug.Log("previous :" + previous_possition.z);
-                        Debug.Log("current :" + current_postion.z);
-                        Debug.Log("Player.position :" + Player.position.z);
+                        //Debug.Log("previous :" + previous_possition.z);
+                        //Debug.Log("current :" + current_postion.z);
+                        //Debug.Log("Player.position :" + Player.position.z);
                     }
                     Textscore.text = "Score : " + x;
             }

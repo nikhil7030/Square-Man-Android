@@ -25,5 +25,6 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(Next_Level_Index);
 
     }
+
     
 }

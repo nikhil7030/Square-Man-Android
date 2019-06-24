@@ -4,19 +4,22 @@ using UnityEngine.SceneManagement;
 public class BehaviourScript : MonoBehaviour
 {
     public Rigidbody rb;
-    public float move = 100,fmove = 1000;
-  
+    public float move = 100f, fmove = 1000f;
+    public float Speed = 0f;
+    public static bool Control_Mode_Touch = true;
 
 
     void Start()
     {
         Debug.Log("Start");
+        rb = GetComponent<Rigidbody>();
+
     }
 
     // Update is called once per frame
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.name == "Ground" || col.gameObject.tag =="Boundary")
+        if (col.gameObject.name == "Ground" || col.gameObject.tag == "Boundary")
         {
             //To Skip Ground collision Count
         }
@@ -27,25 +30,32 @@ public class BehaviourScript : MonoBehaviour
 
             Debug.Log("Hit");
         }
-        
-        
+
+
     }
 
     public void Move_Left()
     {
-        rb.AddForce(-move * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
-        // Debug.Log("Going Left");
-        //For Left Movement
+        if (Control_Mode_Touch)
+        {
+            rb.AddForce(-move * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+            // Debug.Log("Going Left");
+            //For Left Movement
+        }
     }
     public void Move_Right()
     {
-            rb.AddForce(move* Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+        if (Control_Mode_Touch)
+        {
+            rb.AddForce(move * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
             //Debug.Log("Going Right");
             //For Right Movement
+        }
     }
 
-void Update()
+    void Update()
     {
+        
         rb.AddForce(0, 0, fmove * Time.deltaTime);
         if (rb.position.y < -1)
         {
@@ -54,7 +64,19 @@ void Update()
 
         }
 
-       
-
     }
+    void FixedUpdate()
+    {
+        if (Control_Mode_Touch == false)
+        {
+            Vector3 acc = Input.acceleration;
+            rb.AddForce(acc.x * Speed, 0, 0);
+            Debug.Log("Accelerometer Position" + acc.x);
+        }
+    }
+
+
+   
 }
+
+

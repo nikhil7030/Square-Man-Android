@@ -2,9 +2,11 @@
 
 public class Endpoint : MonoBehaviour
 {
-    public GameManager gamemanger;
+    
+    public level_Transition level;
     public void OnTriggerEnter()
     {
-        gamemanger.complete_level1();
+        level.End_Game_Animation();
+
     }
 }

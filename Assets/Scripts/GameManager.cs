@@ -4,27 +4,25 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public float Store_Score;
-    public int Next_Level_Index;
+    public score2 score2;
+    public int Current_Scene;
+    
     public void restart() //Scean Restart
     {
-        Store_Score = 0;
         SceneManager.LoadScene("Lost");
+        score2.Store_score = 0;
+        
         
     }
 
     public void Replay_Current_Level()
     {
+        Debug.Log("Restart");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1;
     }
 
-    public void complete_level1()
-    {
-        Debug.Log("End Point Reached");
-        Store_Score = 0;
-        SceneManager.LoadScene(Next_Level_Index);
-
-    }
+    
 
     
 }

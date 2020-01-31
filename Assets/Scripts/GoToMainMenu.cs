@@ -9,4 +9,5 @@ public class GoToMainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("Menu");
     }
+
 }

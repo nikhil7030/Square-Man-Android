@@ -4,8 +4,9 @@ using UnityEngine.UI;
 
 public class Hit : MonoBehaviour
 {
+    /*
     public Transform Player;
-    public static int hitValue = 0;
+    public static int hitValue = 5;
     Text hitt;
 
     //Text score;
@@ -22,8 +23,9 @@ public class Hit : MonoBehaviour
     void Update()
     {
 
-        hitt.text = "Hits : " + Hit.hitValue ;
+        hitt.text = hitValue ;
     
 
     }
+    */
 }

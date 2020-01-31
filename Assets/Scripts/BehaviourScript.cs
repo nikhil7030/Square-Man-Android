@@ -1,12 +1,19 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class BehaviourScript : MonoBehaviour
 {
+    public Animator animator;
     public Rigidbody rb;
     public float move = 100f, fmove = 1000f;
     public float Speed = 0f;
     public static bool Control_Mode_Touch = true;
+    public score2 score2;
+    public int hit_value = 6;
+    public Slider Hit_Count;
+
+
 
 
     void Start()
@@ -25,12 +32,10 @@ public class BehaviourScript : MonoBehaviour
         }
         else
         {
-            Hit.hitValue += 1; //Adds The Hit Count
-            score2.x -= 50; //Reduces Score if Hit 
-
-            Debug.Log("Hit");
+            hit_value -= 1; //Adds The Hit Count & Reducing Min Hit Allowded
+            Hit_Count.value = hit_value;
+            
         }
-
 
     }
 
@@ -57,11 +62,10 @@ public class BehaviourScript : MonoBehaviour
     {
         
         rb.AddForce(0, 0, fmove * Time.deltaTime);
-        if (rb.position.y < -1)
+        if (rb.position.y < -2)
         {
-            FindObjectOfType<GameManager>().restart();
-            //Function To Restart The Level if player Falls out
-
+                animator.SetTrigger("Lost_Fade");
+            
         }
 
     }
@@ -72,6 +76,11 @@ public class BehaviourScript : MonoBehaviour
             Vector3 acc = Input.acceleration;
             rb.AddForce(acc.x * Speed, 0, 0);
             Debug.Log("Accelerometer Position" + acc.x);
+        }
+
+        if (hit_value <= 0)
+        {
+            animator.SetTrigger("Lost_Fade");
         }
     }
 

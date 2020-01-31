@@ -5,10 +5,12 @@ using UnityEngine.UI;
 public class score2: MonoBehaviour
 {
     public Transform Player;
-    Text Textscore;
-    public static float x = 0;
-    public GameManager for_score;
-    Vector3 previous_possition,current_postion;
+    public Transform End_Point; 
+
+    Text Textscore; //To Update Score in Canvas
+    public float x = 0;  //Score var
+    public float Store_score = 0; 
+    Vector3 previous_possition,current_postion; 
      
 
     // Start is called before the first frame update
@@ -27,7 +29,7 @@ public class score2: MonoBehaviour
 
             if(current_postion.z != previous_possition.z)
             {
-                    if (Player.position.z < 199.5)
+                    if (Player.position.z < End_Point.position.z)
                     {
                         x += 1;
                         previous_possition.z = Player.position.z;
@@ -37,7 +39,7 @@ public class score2: MonoBehaviour
                     }
                     Textscore.text = "Score : " + x;
             }
-            for_score.Store_Score = x;
+            Store_score = x;
 
         
     }

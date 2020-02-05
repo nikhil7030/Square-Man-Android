@@ -11,8 +11,6 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("Lost");
         score2.Store_score = 0;
-        
-        
     }
 
     public void Replay_Current_Level()
@@ -24,5 +22,7 @@ public class GameManager : MonoBehaviour
 
     
 
-    
+
+
+
 }

@@ -7,20 +7,21 @@ public class BehaviourScript : MonoBehaviour
     public Animator animator;
     public Rigidbody rb;
     public float move = 100f, fmove = 1000f;
-    public float Speed = 0f;
+    public float Speed = 50f;
     public static bool Control_Mode_Touch = true;
     public score2 score2;
     public int hit_value = 6;
     public Slider Hit_Count;
-
-
-
+    private float previousTime;
+    [SerializeField]private float timeGap = 1f;
+    [SerializeField] private speed sp;
+    public float temp = 0;  //Speed
+    public float Store_score = 0;
 
     void Start()
     {
         Debug.Log("Start");
         rb = GetComponent<Rigidbody>();
-
     }
 
     // Update is called once per frame
@@ -82,10 +83,16 @@ public class BehaviourScript : MonoBehaviour
         {
             animator.SetTrigger("Lost_Fade");
         }
+
+        if (Time.time - previousTime > timeGap)
+        {
+            fmove += 70f;
+            Speed += 1;
+            temp += 1;
+            sp.speed_.text = "X" + temp;
+            previousTime = Time.time;
+        }
     }
-
-
-   
 }
 
 

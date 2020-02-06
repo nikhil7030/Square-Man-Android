@@ -18,7 +18,7 @@ public class BehaviourScript : MonoBehaviour
     public float temp = 0;  //Speed
     public float Store_score = 0;
 
-    void Start()
+    void Awake()
     {
         Debug.Log("Start");
         rb = GetComponent<Rigidbody>();
@@ -59,19 +59,24 @@ public class BehaviourScript : MonoBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
         
         rb.AddForce(0, 0, fmove * Time.deltaTime);
         if (rb.position.y < -2)
         {
+            if (PlayerPrefs.GetInt("Score") < score2.Store_score)
+            {
                 animator.SetTrigger("Lost_Fade");
-            
+            }
+            else if (PlayerPrefs.GetInt("Score",0) > score2.Store_score)
+            {
+                animator.SetTrigger("Fade_Out");
+            }
+
         }
 
-    }
-    void FixedUpdate()
-    {
+    
         if (Control_Mode_Touch == false)
         {
             Vector3 acc = Input.acceleration;
@@ -81,7 +86,16 @@ public class BehaviourScript : MonoBehaviour
 
         if (hit_value <= 0)
         {
-            animator.SetTrigger("Lost_Fade");
+            if (PlayerPrefs.GetInt("Score") < score2.Store_score)
+            {
+                animator.SetTrigger("Lost_Fade");
+            }
+            else if (PlayerPrefs.GetInt("Score") > score2.Store_score)
+            {
+                animator.SetTrigger("Fade_Out");
+            }
+            
+
         }
 
         if (Time.time - previousTime > timeGap)

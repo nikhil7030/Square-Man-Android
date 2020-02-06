@@ -18,7 +18,7 @@ public class Pause : MonoBehaviour
     {
         Progress_Bar.maxValue = End_Point.position.z; // To Set Max Progressbar Value
     }
-    void Update()
+    void FixedUpdate()
     {
         
         Progress_Bar.value = Player.position.z; // To Update Progress Bar

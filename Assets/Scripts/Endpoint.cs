@@ -7,6 +7,5 @@ public class Endpoint : MonoBehaviour
     public void OnTriggerEnter()
     {
         level.End_Game_Animation();
-
     }
 }

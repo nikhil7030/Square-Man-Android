@@ -1,6 +1,5 @@
 ﻿
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,12 +12,18 @@ public class Pause : MonoBehaviour
     public Slider Progress_Bar;
     public Slider PowerUp_Bar;
     int i,Temp_Slider_Value = 10;
+    public GameObject lostPanel;
+    public GameObject blurPanel;
 
-    void Start()
+    void Awake()
     {
         Progress_Bar.maxValue = End_Point.position.z; // To Set Max Progressbar Value
+        Progress_Bar.minValue = Player.position.z; // To Set Max Progressbar Value
+        lostPanel.SetActive(false);
+        blurPanel.SetActive(false);
+        Debug.Log("This is from Pause Disabling panels");
     }
-    void FixedUpdate()
+    void Update()
     {
         
         Progress_Bar.value = Player.position.z; // To Update Progress Bar

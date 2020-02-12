@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class BehaviourScript : MonoBehaviour
@@ -11,17 +10,27 @@ public class BehaviourScript : MonoBehaviour
     public static bool Control_Mode_Touch = true;
     public score2 score2;
     public int hit_value = 6;
-    public Slider Hit_Count;
-    private float previousTime;
+    public Slider hit_Count;
+    public Slider powerUp;
+    public float previousTime;
     [SerializeField]private float timeGap = 1f;
     [SerializeField] private speed sp;
     public float temp = 0;  //Speed
-    public float Store_score = 0;
+    public float store_score = 0;
+    public float previousPosition;
+    private bool isLost;
+    public Gradient healthGreadient;
+    public Gradient powerUpGradient;
+    public Image[] fill = new Image[2];
 
     void Awake()
     {
         Debug.Log("Start");
         rb = GetComponent<Rigidbody>();
+        
+        isLost = false;
+        fill[0].color = healthGreadient.Evaluate(1f);    //Health
+        fill[1].color = powerUpGradient.Evaluate(1f);    //Power    
     }
 
     // Update is called once per frame
@@ -34,8 +43,7 @@ public class BehaviourScript : MonoBehaviour
         else
         {
             hit_value -= 1; //Adds The Hit Count & Reducing Min Hit Allowded
-            Hit_Count.value = hit_value;
-            
+            hit_Count.value = hit_value;
         }
 
     }
@@ -61,22 +69,25 @@ public class BehaviourScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        
         rb.AddForce(0, 0, fmove * Time.deltaTime);
         if (rb.position.y < -2)
         {
-            if (PlayerPrefs.GetInt("Score") < score2.Store_score)
+            if (PlayerPrefs.GetInt("Score",0) > score2.x && !isLost)
             {
+                transform.GetComponent<Rigidbody>().isKinematic= true;
                 animator.SetTrigger("Lost_Fade");
+                isLost = true;
+                score2.x = 0;
+                Debug.Log("This is from behave Stating Lost");
             }
-            else if (PlayerPrefs.GetInt("Score",0) > score2.Store_score)
+            else if (PlayerPrefs.GetInt("Score",0) < score2.x)
             {
                 animator.SetTrigger("Fade_Out");
             }
 
         }
 
-    
+        
         if (Control_Mode_Touch == false)
         {
             Vector3 acc = Input.acceleration;
@@ -86,26 +97,65 @@ public class BehaviourScript : MonoBehaviour
 
         if (hit_value <= 0)
         {
-            if (PlayerPrefs.GetInt("Score") < score2.Store_score)
+            if (PlayerPrefs.GetInt("Score", 0) > score2.x && !isLost)
             {
+                transform.GetComponent<Rigidbody>().isKinematic = true;
                 animator.SetTrigger("Lost_Fade");
+                isLost = true;
+                score2.x = 0;
+                Debug.Log("This is from behave Stating Lost");
             }
-            else if (PlayerPrefs.GetInt("Score") > score2.Store_score)
+            else if (PlayerPrefs.GetInt("Score",0) < score2.x)
             {
                 animator.SetTrigger("Fade_Out");
             }
-            
-
         }
 
         if (Time.time - previousTime > timeGap)
         {
+            if (transform.position.z == previousPosition)
+            {
+                if (PlayerPrefs.GetInt("Score", 0) > score2.x && !isLost)
+                {
+                    transform.GetComponent<Rigidbody>().isKinematic = true;
+                    animator.SetTrigger("Lost_Fade");
+                    isLost = true;
+                    score2.x = 0;
+                    Debug.Log("This is from behave Stating Lost");
+                }
+                else if (PlayerPrefs.GetInt("Score", 0) < score2.x)
+                {
+                    animator.SetTrigger("Fade_Out");
+                }
+            }
             fmove += 70f;
             Speed += 1;
             temp += 1;
             sp.speed_.text = "X" + temp;
             previousTime = Time.time;
+            previousPosition = transform.position.z;
         }
+
+        if (Input.GetKey("a"))
+        {
+            if (Control_Mode_Touch)
+            {
+                rb.AddForce(-50f * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+                // Debug.Log("Going Left");
+                //For Left Movement
+            }
+        }
+        if (Input.GetKey("d"))
+        {
+            if (Control_Mode_Touch)
+            {
+                rb.AddForce(50f * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+                //Debug.Log("Going Right");
+                //For Right Movement
+            }
+        }
+        fill[0].color = healthGreadient.Evaluate(hit_Count.normalizedValue);
+        fill[1].color = powerUpGradient.Evaluate(powerUp.normalizedValue);
     }
 }
 

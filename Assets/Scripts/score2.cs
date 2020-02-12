@@ -12,8 +12,9 @@ public class score2: MonoBehaviour
     public int x = 0;  //Score var
     public int Store_score = 0; 
     public int previous_Score = 0; 
-    Vector3 previous_possition,current_postion; 
-    
+    Vector3 previous_possition,current_postion;
+    public float save;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,7 +39,10 @@ public class score2: MonoBehaviour
                     }
                     Textscore.text = "Score : " + x;
             }
-            Store_score = x;
+        save = PlayerPrefs.GetInt("Score", 0);
+        PlayerPrefs.GetInt("Score");
+
+        Store_score = x;
         if (PlayerPrefs.GetInt("Score", 0) == 0)
         {
             PlayerPrefs.SetInt("Score", Store_score);

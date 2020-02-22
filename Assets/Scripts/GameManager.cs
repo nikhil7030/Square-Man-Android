@@ -15,13 +15,13 @@ public class GameManager : MonoBehaviour
 
     public void Replay_Current_Level()
     {
-        Debug.Log("Restart");
+        //Debug.Log("Restart");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1;
     }
     public void Replay_Current_Level_from_Lost()
     {
-        Debug.Log("Restart");
+        //Debug.Log("Restart");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1;
     }

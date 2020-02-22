@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Shootable
+  - Obstracle
+  - Distroyed Objects
+  - Green Obstracles
   layers:
   - Default
   - TransparentFX

@@ -17,11 +17,13 @@ public class Pause : MonoBehaviour
 
     void Awake()
     {
+        isgamepaused = false;
+        Time.timeScale = 1f;
         Progress_Bar.maxValue = End_Point.position.z; // To Set Max Progressbar Value
         Progress_Bar.minValue = Player.position.z; // To Set Max Progressbar Value
-        lostPanel.SetActive(false);
-        blurPanel.SetActive(false);
-        Debug.Log("This is from Pause Disabling panels");
+        //lostPanel.SetActive(false);
+        //blurPanel.SetActive(false);
+        //Debug.Log("This is from Pause Disabling panels");
     }
     void Update()
     {
@@ -37,18 +39,22 @@ public class Pause : MonoBehaviour
 
     public void Back_button()
     {
-        SceneManager.LoadScene("Menu");  //Going Back To Menu
+        SceneManager.LoadSceneAsync("Menu");  //Going Back To Menu
+        
+        
     }
 
     public void resume() // Resuming Game
     {
         if (isgamepaused == true)
         {
+            Debug.Log("Its Here");
             Time.timeScale = 1.0f;
             isgamepaused = false;
         }
         else
         {
+            Debug.Log("Its Here");
             Time.timeScale = 0.0f;
         }
 
@@ -70,12 +76,12 @@ public class Pause : MonoBehaviour
 
     public IEnumerator Update_PowerUp_Bar()
     {
-        Debug.Log("Entered In Function");
+        //Debug.Log("Entered In Function");
         for (i=0; i < 10;i++ )
         {
             Temp_Slider_Value -=  1;
             PowerUp_Bar.value = Temp_Slider_Value;
-            Debug.Log("Sec "+ Temp_Slider_Value);
+            //Debug.Log("Sec "+ Temp_Slider_Value);
             yield return new WaitForSeconds(1f);
 
         }

@@ -15,15 +15,15 @@ public class level_Transition : MonoBehaviour
     }
     public void complete_level1()
     {
-        Debug.Log("End Point Reached");
-        SceneManager.LoadScene(Next_Level_Index);
+        //Debug.Log("End Point Reached");
+        SceneManager.LoadSceneAsync(0);
         behave.hit_value = 0;
         scoreref.x = 0;
 
     }
     public void Fade_When_Lost()
     {
-        Debug.Log("This is from levelTransition Enabling panels");
+        //Debug.Log("This is from levelTransition Enabling panels");
         lostPanel[0].SetActive(true);
         lostPanel[1].SetActive(true);
         
@@ -33,7 +33,7 @@ public class level_Transition : MonoBehaviour
     {
         lostPanel[0].SetActive(false);
         lostPanel[1].SetActive(false);
-        Debug.Log("This is from levelTransition Disabling panels");
+        //Debug.Log("This is from levelTransition Disabling panels");
     }
 
 }

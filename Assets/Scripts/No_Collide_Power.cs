@@ -26,14 +26,14 @@ public class No_Collide_Power : MonoBehaviour
     IEnumerator PickUp()
     {
 
-        Debug.Log("Triggered");
+        //Debug.Log("Triggered");
 
         Partical.Play();    //Add PowerUp Effect
         Obst = GameObject.FindGameObjectsWithTag("Obstracle"); 
 
         foreach (GameObject r in Obst)
         {
-            Debug.Log("Disabled");
+            //Debug.Log("Disabled");
             r.GetComponent<BoxCollider>().enabled = false; //Part After Getting PowerUp
 
         
@@ -49,13 +49,13 @@ public class No_Collide_Power : MonoBehaviour
         Player.transform.localScale -= add;
         foreach (GameObject r in Obst)
         {
-            Debug.Log("Disabled");
+            //Debug.Log("Disabled");
             r.GetComponent<BoxCollider>().enabled = true; //Part After Loosing PowerUp
 
         }
 
 
-        Debug.Log("Distroyed");
+        //Debug.Log("Distroyed");
         Destroy(gameObject);
     }
     

@@ -1,6 +1,7 @@
 ﻿
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class score2: MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class score2: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        HighScore.text = "High Score: " + PlayerPrefs.GetInt("Score", 0).ToString();
+        HighScore.text = "High Score: " + PlayerPrefs.GetInt(SceneManager.GetActiveScene().name, 0).ToString();
     }
 
     // Update is called once per frame
@@ -39,18 +40,19 @@ public class score2: MonoBehaviour
                     }
                     Textscore.text = "Score : " + x;
             }
-        save = PlayerPrefs.GetInt("Score", 0);
-        PlayerPrefs.GetInt("Score");
+        save = PlayerPrefs.GetInt(SceneManager.GetActiveScene().name, 0);
+        
 
         Store_score = x;
-        if (PlayerPrefs.GetInt("Score", 0) == 0)
+
+        if (PlayerPrefs.GetInt(SceneManager.GetActiveScene().name, 0) == 0)
         {
-            PlayerPrefs.SetInt("Score", Store_score);
+            PlayerPrefs.SetInt(SceneManager.GetActiveScene().name, Store_score);
         }
         
-        if (PlayerPrefs.GetInt("Score",0) < Store_score)
+        if (PlayerPrefs.GetInt(SceneManager.GetActiveScene().name, 0) < Store_score)
         {
-            PlayerPrefs.SetInt("Score", Store_score);
+            PlayerPrefs.SetInt(SceneManager.GetActiveScene().name, Store_score);
         }
     }
 
